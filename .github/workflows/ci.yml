@@ -24,12 +24,12 @@ jobs:
         run: npx playwright install
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=html
         env:
           APP_URL: ${{ secrets.APP_URL }}
           TESTMAIL_API_TOKEN: ${{ secrets.TESTMAIL_API_TOKEN }}
           TESTMAIL_DOMAIN: ${{ secrets.TESTMAIL_DOMAIN }}
           TESTMAIL_NAMESPACE: ${{ secrets.TESTMAIL_NAMESPACE }}
+        run: npx playwright test --headed --reporter=html
 
       - name: Upload Playwright HTML report
         uses: actions/upload-artifact@v4
