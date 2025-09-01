@@ -101,17 +101,22 @@ test.describe("Email OTP E2E Flow", () => {
     await page.goto(APP_URL);
     await page.fill("input[type='email']", EMAIL_USER);
     await page.getByText("Login", { exact: true }).click();
+    await page.click("//div[text()='OR Login using OTP']");
 
     for (let i = 0; i < 3; i++) {
-      await page.click("//div[text()='OR Login using OTP']");
       await page.locator("//span[text()='Resend OTP']").waitFor();
       await page.click("//span[text()='Resend OTP']");
     }
-    const otp = await fetchLatestOtp({ searchSubject: EMAIL_SUBJECT });
+    const otp = await fetchLatestOtp(
+      EMAIL_USER,
+      TESTMAIL_API_TOKEN,
+      TESTMAIL_NAMESPACE
+    );
     await page.fill("#otp", otp);
     await page.click("[type='submit']");
-    await expect(page.locator("form p").first()).toContainText(
-      "The OTP is incorrect or has expired"
-    );
+
+    await page.getByRole("button", { name: "T Hi Test arrow_down" }).click();
+    await expect(page.getByText("Logout")).toBeVisible();
+    await page.getByText("Logout").click();
   });
 });

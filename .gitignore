@@ -3,5 +3,6 @@ node_modules/
 *.log
 .vscode/
 node_modules/
+/playwright-report/
 /test-results/
 /playwright/.cache/

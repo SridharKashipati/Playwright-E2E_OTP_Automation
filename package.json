@@ -4,10 +4,9 @@
   "description": "Playwright E2E automation for Email OTP flow",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
-    "test:headed": "playwright test --headed",
+    "local": "npx playwright test --headed",
+    "test": "npx playwright test --reporter=html",
     "test:report": "npx playwright show-report",
-    "test:ci": "npx playwright test --reporter=html",
     "cleanup": "rm -rf test-results playwright-report"
   },
   "author": "Sridhar Kashipati",

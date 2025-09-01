@@ -1,4 +1,4 @@
-# Email OTP E2E Automation
+# Playwright Email OTP E2E Automation
 
 ## Overview
 Automated end-to-end tests for an Email OTP (One-Time Password) verification flow using Playwright.
@@ -36,7 +36,7 @@ Automated end-to-end tests for an Email OTP (One-Time Password) verification flo
 
 ## Running Tests Locally
 ```sh
-npm run test:ci
+npm run local
 ```
 
 ## Viewing the Report
@@ -50,60 +50,19 @@ npm run test:report
 - Set the required secrets (`APP_URL`, `TESTMAIL_API_TOKEN`, `TESTMAIL_DOMAIN`, `TESTMAIL_NAMESPACE`) in your repo settings.
 
 ## One-line Commands
-- **Local:** `npm run test:ci`
+- **Local:** `npm run local`
 - **View Report:** `npm run test:report`
 - **Cleanup:** `npm run cleanup`
 - **CI:** See `.github/workflows/ci.yml`
 
 ## Assumptions
-- The email inbox is accessible via IMAP/POP and delivers OTPs promptly.
-- OTP validity and resend logic are enforced by the backend.
+- The email inbox is accessible via API and delivers OTPs promptly.
+- OTP validity and resend logic are as described.
 - All credentials are provided via environment variables.
 
 ## Artifacts
-- Test report: `playwright-report/` (HTML)
+- Test report: `/playwright-report/` (HTML)
 - Screenshots/logs: Included in report on failure
 
 ## Notes
 - No secrets are committed.
-- Tests are re-runnable and flake-resistant with sensible waits/polling.
-# Playwright Email OTP E2E Automation
-
-## Setup
-
-1. Clone the repo.
-2. Copy `.env.example` to `.env` and fill in your app and email credentials.
-3. Install dependencies:
-   ```
-   npm install
-   ```
-
-## Running Tests
-
-- Run all tests:
-  ```
-  npm test
-  ```
-- View HTML report:
-  ```
-  npm run test:report
-  ```
-
-## Environment Variables
-
-See `.env` for environment variables.
-
-## CI
-
-Tests run on every push via GitHub Actions. The Playwright HTML report is published as an artifact.
-
-## Assumptions
-
-- OTP email subject and format are known and stable.
-- Email inbox is dedicated for test runs.
-- OTP validity and resend logic are as described.
-
-## One-line commands
-
-- Local: `npm run test`
-- CI: See `.github/workflows/ci.yml`
