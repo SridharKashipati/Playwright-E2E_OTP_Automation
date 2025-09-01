@@ -101,9 +101,9 @@ test.describe("Email OTP E2E Flow", () => {
     await page.goto(APP_URL);
     await page.fill("input[type='email']", EMAIL_USER);
     await page.getByText("Login", { exact: true }).click();
+    await page.click("//div[text()='OR Login using OTP']");
 
     for (let i = 0; i < 3; i++) {
-      await page.click("//div[text()='OR Login using OTP']");
       await page.locator("//span[text()='Resend OTP']").waitFor();
       await page.click("//span[text()='Resend OTP']");
     }
