@@ -1,6 +1,5 @@
 name: Playwright E2E automation for Email OTP flow
 
-
 on:
   push:
     branches: [ main ]
@@ -12,12 +11,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
       - name: Run Playwright tests
         run: npx playwright test --reporter=html
         env:
@@ -25,6 +30,7 @@ jobs:
           TESTMAIL_API_TOKEN: ${{ secrets.TESTMAIL_API_TOKEN }}
           TESTMAIL_DOMAIN: ${{ secrets.TESTMAIL_DOMAIN }}
           TESTMAIL_NAMESPACE: ${{ secrets.TESTMAIL_NAMESPACE }}
+
       - name: Upload Playwright HTML report
         uses: actions/upload-artifact@v4
         with:
